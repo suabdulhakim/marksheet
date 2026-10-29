@@ -1,0 +1,57 @@
+#include <iostream> 
+#include <iomanip> 
+using namespace std;
+int main() { 
+    char names[5][20];
+    int marks[5][3];
+    int total[5];
+    float avg[5];
+
+for (int i = 0; i < 5; i++) {
+    cout << "Enter student name: ";
+    cin.getline(names[i], 20);
+
+    total[i] = 0;
+
+    for (int j = 0; j < 3; j++) {
+        cout << "Enter mark " << j + 1 << ": ";
+        cin >> marks[i][j];
+        total[i] += marks[i][j];
+    }
+
+    avg[i] = total[i] / 3.0;
+    cin.ignore(100, '\n');
+}
+
+int top = 0;
+
+for (int i = 1; i < 5; i++) {
+    if (total[i] > total[top]) {
+        top = i;
+    }
+}
+
+cout << "\n";
+cout << left << setw(20) << "Name"
+     << setw(6) << "M1"
+     << setw(6) << "M2"
+     << setw(6) << "M3"
+     << setw(8) << "Total"
+     << setw(8) << "Avg" << endl;
+
+for (int i = 0; i < 5; i++) {
+    cout << left << setw(20) << names[i]
+         << setw(6) << marks[i][0]
+         << setw(6) << marks[i][1]
+         << setw(6) << marks[i][2]
+         << setw(8) << total[i]
+         << fixed << setprecision(1) << avg[i]
+         << endl;
+}
+
+cout << "\nTop student: " << names[top] << endl;
+
+return 0;
+}
+
+
